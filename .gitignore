@@ -1,0 +1,11 @@
+.DS_Store
+mykey.pem
+node_modules
+npm-debug.log
+build/*
+.tmp
+*.swp
+scripts/venv
+scripts/chromedriver*
+scripts/output
+scripts/selenium

@@ -1,0 +1,26 @@
+{
+  "manifest_version": 2,
+  "name": "Social Media Censorship Research Tool",
+  "description": "This project uses a browser plug-in to alert users to any Facebook posts of theirs that may have been censored. The goal is to help the general public understand the platform’s censorship behavior, to collect censored public content into a public dataset, and to evaluate the neutrality of social media content censorship.",
+  "version": "1.0.0",
+  "icons": {
+    "16": "images/16x16.png",
+    "48": "images/48x48.png",
+    "128": "images/128x128.png"
+  },
+  "permissions": [
+  ],
+  "background": {
+      "scripts": ["js/background.js"],
+      "persistent": false
+  },
+  "browser_action": {
+  },
+  "content_scripts": [
+      {
+          "matches": ["https://www.facebook.com/support?tab_type=APPEALS"],
+          "js": ["js/content.js"],
+          "css": ["css/content.css"]
+      }
+  ]
+}
