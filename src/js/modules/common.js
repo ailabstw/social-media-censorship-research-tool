@@ -1,52 +1,51 @@
-export const asyncWait = (time) => new Promise(resolve => {
-  setTimeout(resolve, time);
-});
+import config from './config'
 
-let usrId = null;
+export const asyncWait = (time) => new Promise(resolve => {
+  setTimeout(resolve, time)
+})
+
+let usrId = null
 
 export const setUserId = () => {
-  if (usrId !== null) return;
+  if (usrId !== null) return
 
-  if (window.location.toString() != "https://www.facebook.com/support?tab_type=APPEALS")
-    return;
+  if (window.location.toString() != config.fbAppealURI) { return }
 
   // on appeal
-  let targetScript = Array.from(document.querySelectorAll('script')).find(
-    sc => sc.textContent.includes('profileSwitcherEligibleProfiles'));
-  usrId = targetScript.textContent.match(/\"profileSwitcherEligibleProfiles\":{\"count\":(\d*)},\"id\":\"(\d*)\"/)[2];
+  const targetScript = Array.from(document.querySelectorAll('script')).find(
+    sc => sc.textContent.includes('profileSwitcherEligibleProfiles'))
+
+   usrId = targetScript.textContent.match(/\"__typename\":\"(\w*)\",\"id\":\"(\d*)\"/)[2]
 }
 
 export const getUserId = () => {
-  if (!usrId)
-    throw Error('usrId is not properly set')
-  return usrId;
+  if (!usrId) { throw Error('usrId is not properly set') }
+  return usrId
 }
 
 export const getMainContentHeader = async () => {
-  let max_retry = 5;
-  let interval = 1000;
-
-  for (let i = 0; i < max_retry; i++)
-    try {
-      return await new Promise(resolve => {
-        let timer = setInterval(() => {
-          let hdr = document.querySelectorAll('[aria-label="Main Content Header"]')[0];
-          if (!hdr) { throw Error('main content header not found'); }
-          clearInterval(timer);
-          resolve(hdr);
-        }, interval);
-      });
-    } catch (e) {
-      console.error(e);
-      continue;
-    }
-
-  throw Error('cannot get main content header after max retry')
+  const maxRetry = 5
+  const interval = 1000
+  let retryCnt = 0
+  return await new Promise((resolve, reject) => {
+    const timer = setInterval(() => {
+      const hdr = document.querySelectorAll('[aria-label="Main Content Header"]')[0]
+      if (!hdr) {
+        retryCnt++
+        if (retryCnt >= maxRetry) {
+          clearInterval(timer)
+          reject(Error('main content header not found'))
+        }
+        return
+      }
+      clearInterval(timer)
+      resolve(hdr)
+    }, interval)
+  })
 }
 
 export const postError = async (error) => {
-  let url = 'https://lutein.islander.cc/api/v1/errors';
-  const response = await fetch(url, {
+  const response = await fetch(config.errorURI, {
     body: JSON.stringify({
       name: error.name,
       message: error.message,
@@ -54,9 +53,9 @@ export const postError = async (error) => {
     }),
     headers: {
       'Content-Type': 'application/json',
-      'Source': 'lutein'
+      Source: 'lutein'
     },
     method: 'POST'
-  });
-  return console.log(response);
+  })
+  return console.log(response)
 }

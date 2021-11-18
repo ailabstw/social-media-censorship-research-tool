@@ -1,19 +1,18 @@
-const _ = require('lodash');
-const path = require('path');
-const webpack = require('webpack');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const VersionFilePlugin = require('webpack-version-file-plugin');
-const CrxPlugin = require('crx-webpack-plugin');
+const _ = require('lodash')
+const path = require('path')
+const webpack = require('webpack')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const VersionFilePlugin = require('webpack-version-file-plugin')
+const CrxPlugin = require('crx-webpack-plugin')
 
-const config = require('./config.js');
-const pkg = require('../package.json');
+const config = require('./config.js')
+const pkg = require('../package.json')
 
-const appName = `${pkg.name}-${pkg.version}`;
-
+const appName = `${pkg.name}-${pkg.version}`
 
 module.exports = _.merge({}, config, {
   output: {
-    path: path.resolve(__dirname, '../build/prod'),
+    path: path.resolve(__dirname, '../build/prod')
   },
 
   // devtool: 'eval',
@@ -27,7 +26,7 @@ module.exports = _.merge({}, config, {
     new VersionFilePlugin({
       packageFile: path.resolve(__dirname, '../package.json'),
       template: path.resolve(__dirname, '../src/manifest.json'),
-      outputFile: path.resolve(__dirname, '../build/prod/manifest.json'),
+      outputFile: path.resolve(__dirname, '../build/prod/manifest.json')
     }),
     new CrxPlugin({
       keyFile: '../mykey.pem',
@@ -35,7 +34,7 @@ module.exports = _.merge({}, config, {
       outputPath: '../build',
       name: appName
     }),
-    new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"production"' }),
+    new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"production"' })
     /*
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
@@ -52,4 +51,4 @@ module.exports = _.merge({}, config, {
     }),
     */
   ]
-});
+})

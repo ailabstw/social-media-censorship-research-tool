@@ -1,9 +1,9 @@
-const path = require('path');
+const path = require('path')
 
 module.exports = {
   entry: {
     background: './src/js/background',
-    content: './src/js/content',
+    content: './src/js/content'
   },
   output: {
     filename: './js/[name].js'
@@ -18,4 +18,4 @@ module.exports = {
       include: path.resolve(__dirname, '../src/js')
     }]
   }
-};
+}

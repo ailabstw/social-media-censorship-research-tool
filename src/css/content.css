@@ -2,8 +2,7 @@
   display:flex;
   align-items:center;
   justify-content:center;
-  background-color: black;
-  opacity: 0.6;
+  background-color: rgba(255,255,255,0.6);
   z-index: 10;
   position: fixed;
   width: 100%;
@@ -11,27 +10,57 @@
 }
 
 #ailabstw-info-div {
+  box-shadow: 0 2px 40px 0 #E5E5E5;
+  background-color: white;
   z-index: 11;
-  width: 50%;
-  height: 50%;
+  opacity: 1.0;
+  width: 40%;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: max(0px, min(8px, ((100vw - 4px) - 100%) * 9999)) / 8px;
 }
 
 #ailabstw-progressbar-div {
-  height: 10%;
+  height: 50%;
+  position: relative;
+  display: flex; 
+  flex-direction: row; 
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 #ailabstw-message-div {
   width: 80%;
+  height: 100%;
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: auto;
+  font-family: PingFangTC;
+  font-size: 20px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #050505;
 }
 
 #ailabstw-message-p {
   font-size: 20px;
-  color: white;
+  color: black;
 }
 
 #ailabstw-percentage-span {
   font-size: 20px;
-  color: white;
+  color: black;
 }
 
 #ailabstw-more-info-div {
@@ -39,12 +68,12 @@
   align-items:center;
   justify-content:center;
   width: 100%;
-  height: 20%;
+  height: 10%;
 }
 
 #ailabstw-more-info-a {
   font-size: 16px;
-  color: white;
+  color: black;
 }
 
 #ailabstw-button-div {
@@ -55,9 +84,35 @@
   height: 20%;
 }
 
+.ailabstw-button-color-blue {
+  background-color: #1877f2;
+  color: white;
+}
+
+.ailabstw-button-color-gray {
+  background-color: #E4E6EB;
+  color: #6B727B;
+}
+
 .ailabstw-appeals-btn-cls {
-  width: 50%;
-  font-size: 20px;
+  width: 224px;
+  height: 42px;
+  font-size: 15px;
+  border: none;
+  outline: none;
+  border-radius: max(0px, min(8px, ((100vw - 4px) - 100%) * 9999)) / 8px;
+  margin: 18px;
+  font-family: PingFangTC;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  cursor: pointer;
+}
+
+.ailabstw-appeals-btn-cls:hover{
+  opacity: 0.9;
 }
 
 .progressbar-text {
@@ -65,5 +120,29 @@
   float: right;
   font-size: 30px;
   text-align: right;
-  color: white;
+  color: black;
+}
+
+.execute-button-style {
+  margin-left: 90px; 
+  margin-top: 10px; 
+  position: relative; 
+  background-color: #1877f2; 
+  color: white; 
+  font-size: 14px; 
+  padding: 4px 32px; 
+  border: none;
+  outline: none; 
+  border-radius: max(0px, min(8px, ((100vw - 4px) - 100%) * 9999)) / 8px;
+  display: inline-block; 
+  cursor: pointer;
+}
+
+.execute-button-style:hover {
+  opacity: 0.9;
+}
+
+.censorDiv:hover {
+  background-color: rgba(0,0,0,0.05);
+  border-radius: max(0px, min(8px, ((100vw - 4px) - 100%) * 9999)) / 8px;
 }
