@@ -14,7 +14,7 @@ By installing this Chrome Extension plugin, you can:
 
 If you install this plugin, you agree to the above description and allow Taiwan AI Labs to include your censored posts in this project.
 
-We build our project based on [salsita/chrome-extension-skeleton](https://github.com/salsita/chrome-extension-skeleton)
+We build our project based on [salsita/chrome-extension-skeleton](https://github.com/salsita/chrome-extension-skeleton).
 
 ### How to use it:
 
